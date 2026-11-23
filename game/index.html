@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember Duel — Duel of the Four Elements</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section id="screen-title" class="screen">
+    <div class="title-card">
+      <div class="title-emblem">E M B E R &nbsp; D U E L</div>
+      <h1>Ember Duel</h1>
+      <p class="tagline">A duel of the four elements. Outwit the Gloom Warden,<br>spend your mana well, and bring their life to zero.</p>
+      <div class="title-elements">
+        <span class="el-chip el-ember">EMBER</span>
+        <span class="el-chip el-tide">TIDE</span>
+        <span class="el-chip el-stone">STONE</span>
+        <span class="el-chip el-gale">GALE</span>
+      </div>
+      <button id="btn-start" class="btn big">START DUEL</button>
+      <button id="btn-how" class="btn ghost">HOW TO PLAY</button>
+      <div id="howto" class="howto hidden">
+        <h3>How to play</h3>
+        <ul>
+          <li>Both duelists start with <b>30 life</b>. Bring the Gloom Warden to 0 to win.</li>
+          <li>Each turn you gain <b>+1 mana</b> (up to 10) and draw a card.</li>
+          <li>Click a card (or press <b>1–7</b>) to play it. It costs the mana shown on it.</li>
+          <li><b>Ember</b> burns, <b>Tide</b> heals and draws, <b>Stone</b> shields and crushes, <b>Gale</b> is fast and sharp.</li>
+          <li><b>Shield</b> absorbs damage before life does. Press <b>Space</b> to end your turn.</li>
+        </ul>
+      </div>
+      <p class="record">Session record — <span id="title-record">0 wins · 0 losses</span></p>
+    </div>
+  </section>
+
+  <!-- ============ GAME TABLE ============ -->
+  <section id="screen-game" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">EMBER DUEL</div>
+      <div class="top-mid">Turn <b id="turn-num">1</b> &nbsp;·&nbsp; Score <b id="score">0</b></div>
+      <div class="top-right">Wins <b id="wins">0</b> · Losses <b id="losses">0</b></div>
+    </header>
+
+    <!-- Opponent -->
+    <div class="side opponent">
+      <div class="fighter">
+        <div class="avatar foe">GW</div>
+        <div class="fighter-info">
+          <div class="fighter-name">Gloom Warden <span class="tag">AI OPPONENT</span></div>
+          <div class="bar hp-bar"><div id="foe-hp-fill" class="fill hp"></div><span id="foe-hp-text" class="bar-text">30 / 30</span></div>
+          <div class="bar shield-bar"><div id="foe-shield-fill" class="fill shield"></div><span id="foe-shield-text" class="bar-text">Shield 0</span></div>
+          <div class="mana-row">Mana <span id="foe-mana" class="mana-pips"></span> <span class="deck-count">Deck <b id="foe-deck">20</b></span></div>
+        </div>
+      </div>
+      <div id="foe-hand" class="hand foe-hand"></div>
+    </div>
+
+    <!-- Middle: log + controls -->
+    <div class="middle">
+      <div id="log" class="log"></div>
+      <div class="controls">
+        <div id="phase-label" class="phase">Your turn — play cards, then end turn</div>
+        <button id="btn-end" class="btn">END TURN (Space)</button>
+      </div>
+    </div>
+
+    <!-- Player -->
+    <div class="side player">
+      <div id="player-hand" class="hand player-hand"></div>
+      <div class="fighter">
+        <div class="avatar you">YOU</div>
+        <div class="fighter-info">
+          <div class="fighter-name">Ember Knight <span class="tag">YOU</span></div>
+          <div class="bar hp-bar"><div id="you-hp-fill" class="fill hp"></div><span id="you-hp-text" class="bar-text">30 / 30</span></div>
+          <div class="bar shield-bar"><div id="you-shield-fill" class="fill shield"></div><span id="you-shield-text" class="bar-text">Shield 0</span></div>
+          <div class="mana-row">Mana <span id="you-mana" class="mana-pips"></span> <span class="deck-count">Deck <b id="you-deck">20</b></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ END SCREENS ============ -->
+  <section id="screen-end" class="screen hidden">
+    <div class="end-card">
+      <div id="end-emblem" class="end-emblem">VICTORY</div>
+      <h2 id="end-title">You win!</h2>
+      <p id="end-sub" class="tagline">The Gloom Warden fades into embers.</p>
+      <div id="end-stats" class="end-stats"></div>
+      <button id="btn-again" class="btn big">DUEL AGAIN (R)</button>
+      <button id="btn-title" class="btn ghost">TITLE SCREEN</button>
+    </div>
+  </section>
+
+</div>
+<script src="game.js"></script>
+</body>
+</html>
